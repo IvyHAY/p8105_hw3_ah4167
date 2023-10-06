@@ -48,7 +48,8 @@ instacart|>
   summarize(n_products=n())|>
   filter(n_products>10000)|>
   ggplot(aes(x=aisle,y=n_products))+
-  geom_point()+
+  geom_bar(stat = "identity")+
+  coord_flip()+
   labs(
     title=" Items ordered in each aisle",
     x="Aisle Name",
@@ -58,6 +59,7 @@ instacart|>
 ```
 
 Make a table showing the three most popular items in each of the aisles “baking ingredients”, “dog food care”, and “packaged vegetables fruits”. Include the number of times each item is ordered in your table.
+
 ```{r}
 baking_ingredients =
   instacart |>
