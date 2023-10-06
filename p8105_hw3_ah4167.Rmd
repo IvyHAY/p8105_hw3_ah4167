@@ -144,6 +144,32 @@ rbind(Pink_Lady_Apples_df, Coffee_Ice_Cream_df)|>
   knitr::kable()
 ```
 
+## Problem 2
+
+```{r}
+data("brfss_smart2010")
+```
+
+First, do some data cleaning:
+
+```{r}
+brfss_smart2010|>
+  janitor::clean_names()|>#format the data to use appropriate variable names
+  filter(
+    topic=="Overall Health",#focus on the “Overall Health” topic
+    response %in% c("Excellent", "Very Good", "Good", "Fair", "Poor")#include only responses from “Excellent” to “Poor”
+  )|>
+  mutate(
+    response=factor(
+      response,
+      levels = c("Poor", "Fair", "Good", "Very Good", "Excellent"), 
+      ordered = TRUE
+    )#organize responses as a factor taking levels ordered from “Poor” to “Excellent”
+  )
+```
+
+
+
 
 
 
