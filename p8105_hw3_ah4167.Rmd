@@ -194,8 +194,15 @@ brfss_clean_df|>
        color = "State") +
   theme_minimal()
 ```
+```{r}
+brfss_clean_df|>
+  filter(response=="Excellent")|>
+  group_by(state,year)|>
+  summarize(avg_data_value=mean(data_value,na.rm=TRUE))|>
+  filter(state%in%c("IL","IN","KS"))
+```
 
---interpretation to be completed：We can see from the plot that 
+We can see from the plot that West Virginia's average value over time is apparently different from those other states since it gets really low value in 2005 and 2009. Besides, Indiana's average value is lower than any other state as well which may reflect some difference between them. Moreover, most states' average values follow a pattern that being very high in 2003,2006 and 2008 but low in the other years.
 
 Make a two-panel plot showing, for the years 2006, and 2010, distribution of data_value for responses (“Poor” to “Excellent”) among locations in NY State.
 
@@ -212,7 +219,9 @@ brfss_clean_df|>
   )
 ```
 
---interpretation to be completed：We can see from the plot that 
+We can see from the plots that in New York State, the distribution of data_value for responses among locations is very similar, they both have the high data value for "Good" response and low data value for the "Poor" response. However, there are still some differences between those two years if we look into the distribution of each response type.
+
+## Problem 3
 
 
 
